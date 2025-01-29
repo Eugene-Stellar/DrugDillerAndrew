@@ -29,6 +29,12 @@ img {
     max-width: 500px;
 }
 
+
+.images {
+    display: flex;
+    flex-direction: row;
+}
+
 @media (max-width: 800px) {
     img {
         max-width: 300px;
