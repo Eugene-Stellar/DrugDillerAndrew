@@ -5,7 +5,9 @@
 }
 
 body {
-    background-color: yellow;
+    height: 100vh;
+    background: linear-gradient(#ec110b, #1637df);
+    background-repeat: no-repeat;
     color: white;
 }
 
