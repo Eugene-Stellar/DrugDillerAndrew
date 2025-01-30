@@ -5,9 +5,9 @@
 }
 
 body {
-    height: 100vh;
-    background: linear-gradient(#ec110b, #1637df);
-    background-repeat: no-repeat;
+    height: 100%;
+    background: url("./background.jpg") no-repeat;
+    background-size: cover;
     color: white;
 }
 
@@ -21,12 +21,29 @@ h1 {
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    max-width: 500px;
-    aspect-ratio: 1;
+    max-width: 1024px;
+    height: 100vh;
+    background: linear-gradient(#ec110b, #1637df) no-repeat;
+    transition: opacity 0.5s ease-in-out, visibility 0s 0.5s;
+    opacity: 1;
+    visibility: visible;
+}
+
+.container.hide {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, visibility 0s 0.5s;
+}
+
+.images {
+    padding-top: 10px;
+    gap: 20px;
 }
 
 img {
     max-width: 500px;
+    border-radius: 50%;
+    aspect-ratio: 1;
     transition: opacity 0.5s ease-in-out;
 }
 
@@ -40,14 +57,27 @@ img {
 }
 
 .btn {
+    margin-top: 10px;
+    border-radius: 10px;
     padding: 10px;
-    border-radius: 5px;
     border: none;
 
 }
 
-@media (max-width: 800px) {
+.secret {
+    font-size: 32px;
+    padding: 25px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+@media (max-width: 390px) {
     img {
-        max-width: 300px;
+        max-width: 200px;
+        padding-inline: 10px;
+    }
+    body {
+        background-size: 100% 100%;
     }
 }

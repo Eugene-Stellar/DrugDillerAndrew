@@ -1,10 +1,19 @@
 const btn = document.querySelector('.btn');
 const images = document.querySelectorAll('.img');
+const container = document.querySelector('.container');
+const secret = document.querySelector('.secret');
 
 const originalImages = ['andrey.jpg', 'image2.jpg'];
 const newImages = ['andrey2.jpg', 'images3.jpg'];
 
 let isOriginal = true;
+
+secret.addEventListener('click', () => {
+    container.classList.toggle('hide');
+    setTimeout(() =>  {
+        container.classList.remove('hide');
+    },2000)
+});
 
 btn.addEventListener('click', (e) => {
 
