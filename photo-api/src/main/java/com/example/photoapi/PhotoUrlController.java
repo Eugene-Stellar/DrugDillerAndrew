@@ -32,7 +32,25 @@ public class PhotoUrlController {
   private PhotoUrlService photoUrlService;
 
   @GetMapping("/photo")
-  public String getRandomPhotoUrl(@RequestParam(required = false, defaultValue = "1") int number) {
-    return photoUrlService.getRandomPhotoUrl();
+  public PhotoResponse getRandomPhotoUrl(@RequestParam(required = false, defaultValue = "1") int number) {
+    String url = photoUrlService.getRandomPhotoUrl();
+    return new PhotoResponse(url); // Возвращаем объект, который будет преобразован в JSON
+  }
+
+  // Класс для формирования ответа
+  public static class PhotoResponse {
+    private String imageUrl;
+
+    public PhotoResponse(String imageUrl) {
+      this.imageUrl = imageUrl;
+    }
+
+    public String getImageUrl() {
+      return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+      this.imageUrl = imageUrl;
+    }
   }
 }
