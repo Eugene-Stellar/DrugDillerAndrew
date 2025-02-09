@@ -1,53 +1,34 @@
 const btn = document.querySelector('.btn');
-const images = document.querySelectorAll('.img');
-const image = document.querySelectorAll('.test')[0];
-const container = document.querySelector('.container');
-const secret = document.querySelector('.secret');
+const image = document.querySelector('.image');
+const photoContainer = document.querySelector('.photo');
 
-const originalImages = ['andrey.jpg', 'image2.jpg'];
-const newImages = ['andrey2.jpg', 'images3.jpg'];
-
-let isOriginal = true;
-
-const img = document.createElement('img');
-const test = async () => {
+const fetchNewPhoto = async () => {
     try {
         const response = await fetch('https://drugdillerandrew-production.up.railway.app/photo?number=1');
         const data = await response.json();
-        console.log(data)
-        image.src = data.imageUrl;
+        return data.imageUrl;
+    } catch (error) {
+        console.error(error);
     }
-    catch (error) {
-        console.log(error);
+};
+
+
+btn.addEventListener('click', async () => {
+    const newImageUrl = await fetchNewPhoto();
+    if (newImageUrl) {
+        image.classList.remove('loaded');
+        photoContainer.classList.remove('visible');
+        setTimeout(() => {
+            image.src = newImageUrl;
+            photoContainer.style.display = 'block';
+
+
+            setTimeout(() => {
+                image.classList.add('loaded');
+                photoContainer.classList.add('visible');
+            }, 400);
+        }, 500);
+    } else {
+        console.log('Не удалось загрузить новое фото');
     }
-}
-
-
-
-secret.addEventListener('click', () => {
-    container.classList.toggle('hide');
-    setTimeout(() =>  {
-        container.classList.remove('hide');
-    },2000)
-});
-
-btn.addEventListener('click', (e) => {
-
-    test()
-
-    images.forEach(img => img.classList.add('hidden'));
-
-    setTimeout(() => {
-        if (isOriginal) {
-            images[0].src = newImages[0];
-            images[1].src = newImages[1];
-        } else {
-            images[0].src = originalImages[0];
-            images[1].src = originalImages[1];
-        }
-
-        isOriginal = !isOriginal;
-
-        images.forEach(img => img.classList.remove('hidden'));
-    }, 500);
 });
