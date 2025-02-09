@@ -70,4 +70,15 @@ body {
     opacity: 1;
 }
 
-
+@media (max-width: 500px) {
+    .description {
+        font-size: 10px;
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 10px;
+    }
+    .photo {
+        width: 80%;
+    }
+}
